@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+   
+    <!-- <link rel="stylesheet" href="./css/roboto.css" /> -->
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/bootstrap-material-design.min.css" />
+    <link rel="stylesheet" href="./vendor/map-icons-master/dist/css/map-icons.min.css" />
+    <link rel="stylesheet" href="./css/css/fontawesome-all.min.css" />
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>BarTrek</title>
+  </head>
+
+  <body id="page-top">
+    <!-- Navigation -->
+    <!-- <a class="menu-toggle rounded" href="#">
+      <i class="fa fa-bars"></i>
+    </a> -->
+    
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a class="js-scroll-trigger" href="#page-top">BarTrek</a>
+        </li>
+
+        <li class="sidebar-nav-item">
+              </li> 
+     
+                <li class="sidebar-nav-item">
+                </li>
+            </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead d-flex">
+      <div class="container my-auto">
+          <div class="row">
+          <div class="col-md-5 text-center">
+                <img src="img/Logo.png" class="img-fluid" width="70%" style="padding:0px;" />
+                <h6 class="mb-5">
+
+                  To boldly drink where no one has drunk before...
+                  
+                </h6>
+                <h4><span class="badge badge-dark" style="padding: 25px;">DRINK RESPONSIBLY</span></h4>
+                <!-- <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a> -->
+                
+              </div>
+              <div class="col-md-5">
+                  <div class="jumbotron jumbotron-fluid" style="background: none;">
+                    <h3 class="display-4"><strong>Please Sign In...</strong></h3>
+                    <p class="lead">
+                      <div id="loginPage">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        </div>
+                        <button disabled class="btn btn-raised btn-primary btn-block btn-lg" id="quickstart-sign-in" name="signin">Sign In</button>
+                        <button class="btn btn-raised btn-secondary btn-block btn-lg" id="quickstart-sign-up" name="signup">Register</button>
+                      </div>
+                
+                
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+      <div class="overlay"></div>
+    </header>
+    
+<div id="loggedInView"></div>
+    <section id="loggedInContent">
+        <div id="logoSm"></div>
+        <div id="userFab">
+                <div class="btn-group">
+                        <button class="btn bmd-btn-fab bg-primary dropdown-toggle" type="button" id="ex4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <i class="fa fa-user-cog"></i>
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex4">
+                                <p class="dropdown-item"><span id="signInEmail"></span></p>
+                                <div class="dropdown-divider"></div>
+
+                        <button class="dropdown-item btn btn-primary" disabled id="quickstart-verify-email" name="verify-email"> <i class="far fa-envelope"></i>&nbsp;Verify Email</button>
+
+                        <button class="dropdown-item btn btn-primary" id="quickstart-password-reset" name="verify-email"><i class="fas fa-key"></i>&nbsp;Reset Password?</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item btn btn-danger" onClick="firebase.auth().signOut()">Sign Out</button>
+                        </div> 
+                      </div>
+        </div>
+
+        <nav class="navbar fixed-top navbar-dark bg-primary justify-content-between">
+
+            <form class="form-inline">
+              Search &nbsp; <input aria-label="Search" class="form-control my-lg-0" id="autocomplete" placeholder="Search..." size="25" type="text" value="9 Anchor Quay, Norwich, UK"> &nbsp; <button hidden class="btn btn-outline-dark btn-sm" id="myLocationBtn"
+                type="button"><i class="fa fa-location-arrow"></i></button>&nbsp;
+              <div class="btn-group" role="group" aria-label="Basic example">
+          
+                <button class="btn btn-secondary btn-sm active" id="routeBtn" type="button"><i class="fa fa-map-signs"></i> Route <span class="badge badge-light"></span>
+                                                          <span class="badge badge-light"> <div id="journeyCount">0</div></span>
+                                                      </button>
+          
+                <button class="btn btn-danger btn-sm active" id="clearJourney" type="button"><i class="fa fa-trash-alt"></i> Reset</button>
+          
+              </form>
+              </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+          
+                <ul class="nav nav-justified nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-item nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true"><i class="fa fa-2x fa-map-pin"></i></a>
+                  </li>
+          
+                  <li class="nav-item">
+                    <a class="nav-item nav-link" id="pills-list-tab" data-toggle="pill" href="#pills-list" role="tab" aria-controls="pills-list" aria-selected="false"><i class="far fa-2x fa-list-alt"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-item nav-link " id="pills-route-tab" data-toggle="pill" href="#pills-route" role="tab" aria-controls="pills-route" aria-selected="false"><i class="far fa-2x fa-map"></i></a>
+                  </li>
+                </ul>
+          
+              </div>
+          
+          </nav>
+                  
+
+
+
+
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                        
+                            <div id="map_canvas"></div>
+                            <div id="marker-tooltip"></div> 
+
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-list" role="tabpanel" aria-labelledby="pills-list-tab">
+                      
+                        <div id="results"></div> 
+                         
+                       
+
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-route" role="tabpanel" aria-labelledby="pills-route-tab">Route</div>
+                  </div>
+
+        </section>
+    
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    
+
+
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script type="text/javascript" src="./js/popper.min.js"></script>
+<script type="text/javascript" src="./js/snackbar.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-material-design.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,geometry"></script>
+<script type="text/javascript" src="./vendor/map-icons-master/dist/js/map-icons.js"></script>
+
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+
+<!-- Add additional services you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+<script type="text/javascript" src="js/auth.js"></script>
+<script type="text/javascript" src="js/search.js"></script> 
+
+
+
+<script type="text/javascript" src="js/index.js"></script>
+
+<script src="js/stylish-portfolio.js"></script>
+</body>
+
+</html>
