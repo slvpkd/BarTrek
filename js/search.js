@@ -12,6 +12,7 @@ var journey = [];
 var journeyCount = document.getElementById('journeyCount');
 var placeDetailReviews = document.getElementById('placeDetailReviews');
 
+
 function initialize() {
 	clearResults();
 	clearMarkers();
@@ -74,6 +75,8 @@ function initialize() {
     });
     
 	document.getElementById('routeBtn').addEventListener('click', function() {
+		
+
         directionsDisplay.setMap(map);
         if (iw) {
 			iw.close();
@@ -100,50 +103,34 @@ function initialize() {
           if (status === 'OK') {
             directionsDisplay.setDirections(response);
             var route = response.routes[0];
-             var summaryPanel = document.getElementById('infoCard');
-            
+			var summaryPanel = document.getElementById('infoCard');
 
-
-            summaryPanel.innerHTML = '';
-            //For each route, display summary information.
-            
-            
-            summaryPanel.innerHTML = `
-                <div class="card-header">
-                <h5>Directions</h5>
-                 </div>
-                <ul class="list-group list-group-flush">`;
+		
                 for (var i = 0; i < route.legs.length; i++) {
-                    var routeSegment = i + 1;
-                    summaryPanel.innerHTML += '<li class="list-group-item">' + routeSegment;
-                    summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                    summaryPanel.innerHTML += route.legs[i].end_address + '';
-                    summaryPanel.innerHTML += route.legs[i].distance.text + '';
-                    summaryPanel.innerHTML += '</li>'; 
-            
-                  }
+					var routeSegment = i + 1;
+					
+					summaryPanel.innerHTML += `
+					<li class="list-group-item d-flex justify-content-between align-items-center">` + route.legs[i].start_address + ` to ` + route.legs[i].end_address + `
+					<span class="badge badge-primary badge-pill">`+ route.legs[i].distance.text +`</span>`;
+			
+					
+				  }
 
-
-                   
-                  summaryPanel.innerHTML += '</ui>'; 
-
-
-
+							  
           } else {
             window.alert('Directions request failed due to ' + status);
-          }
+		  }
+		 
         });
-
-
-
-
-        
+ 
     });
-    
+	
+	
 
 	places = new google.maps.places.PlacesService(map);
 	google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
 }
+
 
 
 function tilesLoaded() {

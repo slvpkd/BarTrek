@@ -69,6 +69,10 @@ height: 90%;
 	font-size: small;
 }
 
+.tabIcon {
+	font-size: 1.4em;
+}
+
 #results {
 	margin-top: 80px;
 }
@@ -83,9 +87,7 @@ height: 90%;
 	padding: 5px 0;
 	border-radius: 6px;
 }
-#infoCard {
-	display: none;
-}
+
 /* The snackbar - position it at the bottom and in the middle of the screen */
 
 #snackbar {
@@ -166,3 +168,4 @@ However, delay the fade out process for 2.5 seconds */
 		opacity: 0;
 	}
 }
+
