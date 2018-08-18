@@ -41,6 +41,7 @@
                 loggedInView.style.display = 'block';
                 // loggedInContent.style.display = 'block';
                 $("#loggedInContent").fadeIn();
+                $('#wrapper').fadeOut();
                 loginPage.style.display = 'none';
                 
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
@@ -53,6 +54,7 @@
           } else {
             // User is signed out.
             // [START_EXCLUDE]
+            $('#wrapper').fadeIn();
             document.getElementById('quickstart-sign-in').textContent = 'Sign in';
             //document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]

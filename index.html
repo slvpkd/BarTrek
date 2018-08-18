@@ -10,11 +10,11 @@
   <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
   <!-- <link rel="stylesheet" href="./css/roboto.css" /> -->
-  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/bootstrap-material-design.min.css" />
   <link rel="stylesheet" href="./vendor/map-icons-master/dist/css/map-icons.min.css" />
-  <link rel="stylesheet" href="./css/css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+    crossorigin="anonymous">
   <link href="css/stylish-portfolio.css" rel="stylesheet">
 
 
@@ -23,12 +23,13 @@
 </head>
 
 <body id="page-top">
+
   <!-- Navigation -->
   <!-- <a class="menu-toggle rounded" href="#">
       <i class="fa fa-bars"></i>
     </a> -->
 
-  <nav id="sidebar-wrapper">
+  <nav hidden id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
         <a class="js-scroll-trigger" href="#page-top">BarTrek</a>
@@ -43,6 +44,7 @@
   </nav>
 
   <!-- Header -->
+  <div id="wrapper">
   <header class="masthead d-flex">
     <div class="container my-auto">
       <div class="row">
@@ -60,13 +62,15 @@
 
         </div>
         <div class="col-md-5">
-          <div class="jumbotron jumbotron-fluid" style="background: none;">
-            <h3 class="display-4">
-              <strong>Please Sign In...</strong>
+          <br>
+          <br>
+          <div class="jumbotron jumbotron-fluid" style="background: rgba(255,255,255,0.2);padding: 25px;border-radius: 30px;">
+            <h3 class="display-5">
+              <strong>Sign In to Start Your Trek...</strong>
             </h3>
             <p class="lead">
               <div id="loginPage">
-                <div class="form-group">
+                <div class="form-group text-center">
                   <label for="exampleInputEmail1">Email address</label>
                   <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
@@ -74,126 +78,158 @@
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
-                <button disabled class="btn btn-raised btn-primary btn-block btn-lg" id="quickstart-sign-in" name="signin">Sign In</button>
-                <button class="btn btn-raised btn-secondary btn-block btn-lg" id="quickstart-sign-up" name="signup">Register</button>
+                <button disabled class="btn btn-raised btn-dark btn-block btn-lg" id="quickstart-sign-in" name="signin">Sign In</button>
+
+                <hr>
+                <p class="lead">Enter a username and password to register.</p>
+
+                <button class="btn btn-block active btn-secondary btn-primary btn-lg" id="quickstart-sign-up" name="signup">
+                  <i class="fa fa-user-plus"></i> Register</button>
+                <button class="btn btn-block active btn-secondary btn-primary btn-sm" type="button" id="quickstart-password-reset" name="verify-email">
+                  <i class="fas fa-key"></i> Forgot Password?</button>
+
               </div>
+
+
             </p>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="container">
+          <h5>BarTrek - Pub Crawl Webapp using Google Maps API</h6>
+            <h6>
+              <strong>Created by
+                <a href="http://www.slvpkd.com" target="_blank">Sefton Downes</a>
+              </strong>
+            </h6>
+        </div>
+      </div>
     </div>
-  
-    <div class="overlay"></div>
+    </div>
+
+
+    <!-- <div class="overlay"></div> -->
   </header>
+</div>
 
   <div id="loggedInView"></div>
 
   <section id="loggedInContent">
-    <div id="logoSm"></div>
-    <div id="userFab">
-      <div class="btn-group">
-        <button class="btn bmd-btn-fab bg-primary dropdown-toggle" type="button" id="ex4" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          <i class="fa fa-user-cog"></i>
+    <!-- <div id="logoSm"></div> -->
+
+
+
+    <nav class="navbar navbar-dark fixed-top bg-primary">
+      <form class="form-inline my-2 my-lg-0" id="searchForm">
+        <span class="searchLabel">Search</span> &nbsp;
+        <input aria-label="Search" class="form-control mr-sm-2" id="autocomplete" placeholder="Search..." size="25" type="text" value="9 Anchor Quay, Norwich, UK">
+      </form>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="btn btn-outline-dark active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map"
+            aria-selected="true">
+            <span class="mapBtnText">View Map&nbsp;</span>
+            <i class="fa fa-map-pin"></i>
+          </a>&nbsp;
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-outline-dark " id="pills-list-tab" data-toggle="pill" href="#pills-list" role="tab" aria-controls="pills-list"
+            aria-selected="false">
+            <span class="reviewBtnText">View Reviews&nbsp;</span>
+            <i class="far fa-list-alt"></i>
+          </a>&nbsp;
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-outline-dark " hidden id="pills-route-tab" data-toggle="pill" href="#pills-route" role="tab" aria-controls="pills-route"
+            aria-selected="false">
+            <span class="directionsBtnText">View Directions&nbsp;</span>
+            <i class="far fa-map"></i>
+          </a>
+        </li>
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+
+        <button disabled class="btn btn-info active my-2 my-sm-0" id="routeBtn" type="button">
+          <span class="routeBtnText">Show Route</span>
+          <i class="fas fa-route"></i>&nbsp;
+          <span class="badge badge-light">
+            <div id="journeyCount">0</div>
+          </span>
         </button>
-
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex4">
-          <p class="dropdown-item">
-            <span id="signInEmail"></span>
-          </p>
-          <div class="dropdown-divider"></div>
-
-          <button class="dropdown-item btn btn-primary" disabled id="quickstart-verify-email" name="verify-email">
-            <i class="far fa-envelope"></i>&nbsp;Verify Email</button>
-
-          <button class="dropdown-item btn btn-primary" id="quickstart-password-reset" name="verify-email">
-            <i class="fas fa-key"></i>&nbsp;Reset Password?</button>
-          <div class="dropdown-divider"></div>
-          <button class="dropdown-item btn btn-danger" onClick="firebase.auth().signOut()">Sign Out</button>
-        </div>
-      </div>
-    </div>
-
-    <nav class="navbar fixed-top bg-light justify-content-between">
-
-      <form class="form-inline" onsubmit="event.preventDefault();">
-        Search &nbsp;
-        <input aria-label="Search" class="form-control my-lg-0" id="autocomplete" placeholder="Search..." size="40"
-          type="text" value="9 Anchor Quay, Norwich, UK"> &nbsp;
+        &nbsp;
+        <button class="btn btn-dark active my-2 my-sm-0" id="clearJourney" type="button">
+          <span class="resetBtnText">Reset Route</span>
+          <i class="fas fa-route"></i>&nbsp;
+          <i class="fa fa-trash-alt"></i>
+        </button>
         <button hidden class="btn btn-outline-dark btn-sm" id="myLocationBtn" type="button">
           <i class="fa fa-location-arrow"></i>
-        </button>&nbsp;
-        <div class="btn-group" role="group" aria-label="Basic example">
-
-          <button class="btn btn-secondary btn-sm active" id="routeBtn" type="button">
-            <i class="fa fa-map-signs"></i> Route
-            <span class="badge badge-light">
-              <div id="journeyCount">0</div>
-            </span>
-          </button>&nbsp;
-
-          <button class="btn btn-danger btn-sm active" id="clearJourney" type="button">
-            <i class="fa fa-trash-alt"></i> Reset</button>
-
-
-
+        </button>
       </form>
-      </div>
-
-      
-
- <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a class="nav-item nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map"
-              aria-selected="true">
-              <div class="tabIcon"><i class="far fa-map"></i>&nbsp;<span class="tabText">MAP</span></div>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-item nav-link" id="pills-list-tab" data-toggle="pill" href="#pills-list" role="tab" aria-controls="pills-list"
-              aria-selected="false">
-              <div class="tabIcon"><i class="far fa-list-alt"></i>&nbsp;<span class="tabText">REVIEW</span></div>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-item nav-link " id="pills-route-tab" data-toggle="pill" href="#pills-route" role="tab" aria-controls="pills-route"
-              aria-selected="false">
-              <div class="tabIcon"><i class="fa fa-map-pin"></i>&nbsp;<span class="tabText">DIRECTIONS</span></div>
-            </a>
-          </li>
-        </ul>
-
     </nav>
 
+    <nav class="navbar navbar-expand-lg fixed-bottom navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="./img/logo.png" width="50px" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <span class="navbar-text mr-auto">
+          Signed in as
+          <span id="signInEmail"></span>
+        </span>
 
 
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-primary active my-2 my-sm-0" type="button" disabled id="quickstart-verify-email" name="verify-email">
+            <i class="far fa-envelope"></i>&nbsp;Verify Email</button>
+          &nbsp;
+          <button class="btn btn-danger active my-2 my-sm-0" type="button" onClick="firebase.auth().signOut()">Sign Out
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
 
+        </form>
+      </div>
+    </nav>
 
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-
         <div id="map_canvas"></div>
         <div id="marker-tooltip"></div>
 
-
       </div>
       <div class="tab-pane fade" id="pills-list" role="tabpanel" aria-labelledby="pills-list-tab">
-
+        <Br>
+        <br>
         <div id="results"></div>
-
+        <Br>
+        <br>
 
 
 
       </div>
-      <div class="tab-pane fade" id="pills-route" role="tabpanel" aria-labelledby="pills-route-tab">
-        <br><br><br><br>
+      <div class="tab-pane fade mt-10" id="pills-route" role="tabpanel" aria-labelledby="pills-route-tab">
+        <br>
         <div class="container">
-        <div class="col-md-8">
-        <ul class="list-group">
-        <div id="infoCard"></div>
-      </ul>
-    </div></div>
+          <div class="col-md-12">
+
+            <div id="infoCard"></div>
+          </div>
+
+        </div>
+
+
+
+
 
       </div>
     </div>
